@@ -26,6 +26,10 @@ public class csvgen {
 	String output = "";
 
 	float length = Float.parseFloat(input);
+
+	int x1 = 0;
+	int x2 = 0;
+	int y = 0;
 	
 	try {
 	    PrintWriter writer = new PrintWriter("xorgen.csv", "UTF-8");
@@ -38,15 +42,16 @@ public class csvgen {
 	    
 	    for(float i = 0; i < length; i++)
 		{
-		    int x1 = rand.nextInt(2);
-		    int x2 = rand.nextInt(2);
-		    int y = x1^x2;
+		    x1 = rand.nextInt(2);
+		    x2 = rand.nextInt(2);
+		    y = x1^x2;
 		    
 		    //writer.print(x1+","+x2+","+y+"\n");
 
 		    output = output + x1 + "," + x2 + "," + y + "\n";
-
-		    if(output.length() > 10000)
+		    float remainder = i % 10000;
+		    
+		    if(remainder == 0)
 			{
 			writer.write(output);
 			output = "";
